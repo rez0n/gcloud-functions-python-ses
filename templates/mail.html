@@ -1,0 +1,53 @@
+<html>
+<head>
+    <style>
+        body {
+            background: #eee;
+            font-family: Arial,Helvetica,sans-serif !important;
+            font-size:14px;
+            -webkit-font-smoothing: antialiased;
+            padding:20px 0;
+        }
+        hr {
+            opacity: 0.3;
+        }
+        .header {
+            text-align:center;
+            border-radius:1px;
+            background-color: #bdc3c6;
+        }
+        .footer {
+            margin-bottom: 10px;
+            text-align:center;
+            background-color: #bdc3c6;
+            color: #ffffff;
+            border-radius:1px;
+            height: 50px;
+            line-height: 50px;
+        }
+    </style>
+
+</head>
+
+<body>
+<div style="max-width:700px;margin:0 auto;background:#fff;padding:20px;border-radius:5px;">
+
+    <div class="header">
+        <img src="cid:logo.png"
+             alt="Logo"
+             style="max-height: 50px;">
+    </div>
+
+    <div style="padding: 30px 20px;">
+        Hello {{ name }}. <br>
+        Test email from functions.
+    </div>
+
+    <div class="footer">
+        <b><a href="https://verbin.dev/">verbin.dev</a></b>
+    </div>
+
+</div>
+</body>
+
+</html>
