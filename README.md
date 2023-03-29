@@ -25,5 +25,6 @@ curl -X POST <FUNCTION_URL> \
 ```
 
 ## Epilog
-- As endpoint can be called from any source it worth to add recaptcha integration to avoid bots spam you for your money
+- As endpoint can be called from any source it worth to add captcha integration to avoid bots spam you for your money, 
+example of [recaptcha implementation](https://github.com/rez0n/digitalocean-functions-python-recaptcha).
 

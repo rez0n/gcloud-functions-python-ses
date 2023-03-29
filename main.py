@@ -5,8 +5,9 @@ import sentry_sdk
 from flask import jsonify
 from sentry_sdk.integrations.gcp import GcpIntegration
 
-from ses_mailer import send_email
-from template_loader import env
+from simple_ses_mailer.mailers import SesEmailMessage
+from jinja2 import Environment, select_autoescape, FileSystemLoader
+
 
 sentry_sdk.init(
     dsn=os.getenv('SENTRY_DSN', ''),
@@ -40,14 +41,20 @@ def main(request):
             })
 
         # Send email if name has been specified
-        mail_to = os.getenv('MAIL_TO')
+        env = Environment(
+            loader=FileSystemLoader('templates'),
+            autoescape=select_autoescape(['html', ])
+        )
         template = env.get_template('mail.html')
         html = template.render(name=your_name)
 
-        send_email(mail_subject="mail_subject",
-                   mail_body=html,
-                   mail_to=[mail_to],
-                   )
+        msg = SesEmailMessage(
+            subject='mail_subject',
+            body_html=html,
+            embedded_attachments_list=['templates/logo.png'],
+            mail_to=os.getenv('MAIL_TO'),
+        )
+        msg.send()
 
         return jsonify({
             'success': True,
